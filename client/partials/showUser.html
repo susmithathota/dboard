@@ -1,0 +1,12 @@
+<div style="float:right">
+	<p> <a href="#/dash">dashboard</a> </p>
+	<p> <a href="/logout">logout</a> </p>
+</div>
+<div ng-controller="usersController as UC">
+
+	<h3>Username: {{UC.show_user.name}}</h3>
+	<h4>posted</h4>
+	<p>{{UC.show_user.topics.length}} - topic</p>
+	<p><p>{{UC.show_user.posts.length}} - posts</p></p>
+	
+</div>

@@ -1,0 +1,34 @@
+<div ng-controller="sessionController as SC">
+	welcome, {{SC.cur_user.name}} | <a href="/logout">logout</a>
+
+	<div ng-controller="topicsController as TC">
+		<h3>Add new Topic</h3>
+		<form ng-submit="TC.addTopic(SC.cur_user._id)">
+			<input type="text" ng-model="TC.newTopic.title" placeholder="enter title">
+			<textarea  ng-model="TC.newTopic.description" placeholder="enter description"></textarea>
+			<select ng-model="TC.newTopic.category">
+				<option ng-repeat="category in TC.categoryList">{{category.name}}</option>
+			</select>
+			<input type="submit" value="Add Topic">
+		</form>
+
+		<div>
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>Category</th>
+						<th>Topic</th>
+						<th>User</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="topic in TC.topicList">
+						<td>{{topic.category}}</td>
+						<td> <a href="#/show/topic/{{topic._id}}">{{topic.title}}</a> </td>
+						<td> <a href="#/show/user/{{topic.user._id}}">{{topic.user.name}} </a> </td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,27 @@
+<div ng-controller="sessionController as SC">
+	<div ng-controller="topicsController as TC">
+		<a href="#/show/user/{{TC.show_topic.user._id}}" >{{TC.show_topic.user.name}} </a> posted a topic
+		<h4>{{TC.show_topic.title}}</h4>
+		<p> <i> {{TC.show_topic.description}} </i> </p>
+
+		<div ng-controller="postsController as PC">
+			<h4>Post your answer here</h4>
+			<form ng-submit="PC.addPost(TC.show_topic._id,SC.cur_user._id)">
+				<textarea ng-model="PC.newPost.postText"></textarea>
+				<input type="submit" value="Post">
+			</form>
+			<div ng-repeat="post in PC.postList" ng-if="post.topic._id===TC.show_topic._id" style="border-top:1px solid black">
+				{{post.user.name}} - {{post.topic.title}}-<p>{{post.postText}}</p>
+				<a href="#/show/topic/{{post.topic._id}}" ng-click="PC.likePost(post._id)">{{post.likes}}+</a>
+				<a href='#/show/topic/{{post.topic._id}}' ng-click="PC.dislikePost(post._id)">{{post.dislikes}}-</a>
+				<div>
+					<h4>Post your comment here</h4>
+					<form ng-submit="CC.addComment(TC.show_topic._id,SC.cur_user._id)">
+						<textarea ng-model="CC.newComment.commentText"></textarea>
+						<input type="submit" value="comment">
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
